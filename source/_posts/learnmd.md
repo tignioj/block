@@ -37,10 +37,3 @@ code```$:this is code ```
 ![natural-scenery1](http://localhost:4000/myimg/1.jpg)
   
 ![natural-scenery2](http://localhost:4000/myimg/2.jpg)
-
-### Way of html + css
-<img style = "width: 49%; float: left" src = "http://localhost:4000/myimg/1.jpg">
-<img style = "width: 49%; float: left" src = "http://localhost:4000/myimg/2.jpg">
-<img style = "width: 49%; float: left" src = "http://localhost:4000/myimg/3.jpg">
-<img style = "width: 49%; float: left" src = "http://localhost:4000/myimg/4.jpg">
-<img style = "width: 49%; float: left" src = "http://localhost:4000/myimg/4.jpg">
