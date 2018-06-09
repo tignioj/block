@@ -1,11 +1,12 @@
 ---
-title: 吐槽form标签
+title: form标签之坑
 date: 2018-06-06 02:55:30
 tags: [ajax, html]
+categories: 前端学习
 ---
 ### form 标签
 今天在练习ajax使用方法的时候，把所有的input 和其他div标签放在form标签里面
-```
+```html
     <form>
         <span>学号：</span><input type="text" id="number" /> <br>
         <span>密码：</span><input type="password" id="password" /> <br>
@@ -14,7 +15,7 @@ tags: [ajax, html]
     </form>
 ```
 结果php文件传输过来的数据瞬间消失，ajax文件如下
-```
+```javascript
  <script>
         $(document).ready(function() {
             $("#submit").click(function() {
@@ -46,14 +47,17 @@ tags: [ajax, html]
 ### JSON 格式挺坑的
 这里贴上几个可行的json对象，方便以后参考吧
 #### 单行
-```
+```php
 '{"success" : true, "msg": "hello" }'
-
+```
+```php
 $result = '{"success": true, "msg": "'.$number.':该学号不存在"}';
+```
+```php
  $result = '{"success": true, "msg": "'.$_POST["password"].$number.':该学号不存在"}';
 ```
 #### 多行
-```
+```php
 $result = '{
                 "success":true,
                 "msg": "find: number:'.$value["number"].
@@ -62,7 +66,7 @@ $result = '{
                             ' job: ' .$value["job"].'"
             }';
 ```
-```
+```php
  $result = '{
      "success": true,
       "msg": "'
@@ -72,7 +76,7 @@ $result = '{
             }';
  ```
 
-```
+```php
 $result = '{
         "success": true,
             "msg": 
@@ -83,7 +87,7 @@ $result = '{
                     .'哈哈哈"                    
                 }';
 ```
-```
+```php
 $result = '{
         "success": true,
             "msg": "字符串0'.$_POST["password"].$number.'字符串1'.'字符串2"                    
@@ -110,7 +114,7 @@ $result = '{
 
 
 ### 总结
-- 使用ajax时，我们应该把form标签去掉，否则无法显示后台传输的数据，具体原因也不清楚
+- 使用ajax时，我们应该把form标签去掉，否则无法显示后台传输的数据，原因跟form的属性有关
 - 字符串的连接需要多加练习
 
 

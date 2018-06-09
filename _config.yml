@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title:  Tig-Block
+title:  Tignioj's Blog
 subtitle:
 description:
 keywords:
-author: John Doe
-language:
+author: tignioj
+language: zh-Hans
 timezone:
 
 # URL
@@ -74,6 +74,13 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: next
+
+
+
+# 文章末尾添加“本文结束”标记
+passage_end_tag:
+  enabled: true
+
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

@@ -2,6 +2,7 @@
 title: This is my first passage
 date: 2018-05-30 17:11:54
 tags: markdown
+categories: Markdown测试
 ---
   
 # Use # to show First level heading
@@ -35,5 +36,4 @@ code```$:this is code ```
 ###  Insert a picture
 #### Way of ![Alt text]url/to/image
 ![natural-scenery1](http://localhost:4000/myimg/1.jpg)
-  
 ![natural-scenery2](http://localhost:4000/myimg/2.jpg)

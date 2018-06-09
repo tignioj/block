@@ -6,7 +6,7 @@ tags: [ ajax, javascript ]
 
 ### html代码
 
-```
+```javascript
 <link rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
@@ -57,7 +57,7 @@ tags: [ ajax, javascript ]
 ```
 
 ### php代码
-```
+```php
 <?php
 header("Content-Type:text/plain;charset=utf-8");
 
