@@ -20,9 +20,9 @@ ksweb 是一款收费软件，在谷歌应用商店可以下载，他是一个�
 #### 1.介绍deploy
 对于搞基爱好者来说，发现安卓手机可以运行Linux真是像发现新大陆一样（好吧村通网系列），Linux-deploy的安装百度有很多，这里就不多介绍了
 你可以安装ubuntu16,CentOS,archlinux...等等，并且可以安装图形界面，还有声卡等支持
-笔者已经抛弃用Linux-deploy搭建服务器了，原因是nginx配置php的时候总是出现各种问题，然而似乎无法解决（我不会而已。。）
+然而笔者已经抛弃用Linux-deploy搭建服务器了，原因是nginx配置php的时候总是出现各种问题，然而似乎无法解决（我不会而已。。）
 #### 2.搭建nginx, php
-这里我安装了archlinux，原因是他的软件更新很快,下面介绍如何配置php,nginx
+这里我安装了archlinux，至于如何安装，网上教程很多，这里就不多费口舌了,下面介绍如何配置php,nginx
 ##### 安装nginx php php-fpm
 `pacman -S vim`
 `pacman -S nginx`

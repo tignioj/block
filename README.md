@@ -1,2 +1,1 @@
-你好啊,有空来我[博客](https://tignioj.ml/blog)逛逛呗
-
+## 有空来我的[博客](https://tignioj.github.io/blog/)逛逛呗
