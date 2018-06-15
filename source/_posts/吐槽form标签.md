@@ -1,7 +1,7 @@
 ---
 title: form标签之坑
 date: 2018-06-06 02:55:30
-tags: [ajax, html]
+tags: [ajax, html, php, json]
 categories: 前端学习
 ---
 ### form 标签
@@ -114,7 +114,7 @@ $result = '{
 
 
 ### 总结
-- 使用ajax时，我们应该把form标签去掉，否则无法显示后台传输的数据，原因跟form的属性有关
+- 使用ajax时，最好把form标签去掉，否则无法显示后台传输的数据，原因跟form的属性有关
 - 字符串的连接需要多加练习
 
 

@@ -2,6 +2,7 @@
 title: ajax的原生js方法
 date: 2018-06-05 18:05:00
 tags: [ ajax, javascript ]
+category: 前端学习
 ---
 
 ### html代码
