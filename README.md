@@ -1,1 +1,2 @@
-## 有空来我的[博客](https://tignioj.github.io/blog/)逛逛呗
+## Hello,why don't sit down and have a cup of tea?
+[my blog is here](https://blog.zjlllli.xin)
