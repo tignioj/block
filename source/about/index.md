@@ -4,10 +4,7 @@ date: 2018-06-10 05:10:17
 type: about
 ---
 ## About me
-A simple boy
-
-- Wechat: I don't want to tell you(run away)
-- Email: 859897994@qq.com
+Nothing 
 ## Enjoy some pictures
 ![view1](/blog/myimg/1.jpg)
 ![view2](/blog/myimg/2.jpg)

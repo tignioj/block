@@ -1,8 +1,8 @@
 ---
 title: 玩机之-mi4服务器的搭建
 date: 2018-06-15 15:27:02
-tags: [mi4, 服务器, deploy,ksweb]
-category: mi4
+tags: [mi4, 服务器, deploy,ksweb, Termux, apache, php, nginx]
+category: 服务器
 ---
 ### 一，使用ksweb
 #### 1.KSWEB介绍
@@ -19,8 +19,8 @@ ksweb 是一款收费软件，在谷歌应用商店可以下载，他是一个�
 ### 二，使用linux-deploy
 #### 1.介绍deploy
 对于搞基爱好者来说，发现安卓手机可以运行Linux真是像发现新大陆一样（好吧村通网系列），Linux-deploy的安装百度有很多，这里就不多介绍了
-你可以安装ubuntu16,CentOS,archlinux...等等，并且可以安装图形界面，还有声卡等支持
-然而笔者已经抛弃用Linux-deploy搭建服务器了，原因是nginx配置php的时候总是出现各种问题，然而似乎无法解决（我不会而已。。）
+你可以安装ubuntu18,CentOS,archlinux,kali...等等，并且可以安装图形界面，还有声卡等支持
+
 #### 2.搭建nginx, php
 这里我安装了archlinux，至于如何安装，网上教程很多，这里就不多费口舌了,下面介绍如何配置php,nginx
 ##### 安装nginx php php-fpm
@@ -83,15 +83,25 @@ vim phpinfo.php
 ##### permisson deny，无法手机端访问php文件
 ![nginx-error-php](/blog/myimg/server/nginx-error-php.png)
 ![nginx-error-php1](/blog/myimg/server/nginx-error-php1.png)
-笔者已经抛弃用Linux-deploy搭建服务器了，原因是nginx配置php的时候总是出现各种Permission deny问题，然而似乎无法解决（我不会而已。。）
-
-
-##### 灭屏久后不能ping通但是能连接ssh
-![mi4-ping-deploy.png](/blog/myimg/server/mi4-ping-deploy.png)
-
-##### ping不同但是能连接他的服务器
-![ping2](/blog/myimg/server/ping2.png)
-玄学。。
+  
+~~笔者已经抛弃用Linux-deploy搭建服务器了，原因是nginx配置php的时候总是出现各种Permission deny问题，然而似乎无法解决（我不会而已。。）~~
+##### 转换思路，直接用apache2 和libapache2-mod-php libapache2-mod-php7.2 模块
+先找一下包的名字
+```shell
+apt list | grep php
+apt list | grep apache
+```
+安装
+```shell
+apt-get install apache2 libapache2-mod-php libapache2-mod-php7.2
+```
+配置路径在`/etc/apache2/sites-available/000-default.conf`
+启动
+```shell
+apachectl -M  //看看是否加载了 php7_module 
+apachectl start //启动
+netstat -lntp //看看启动没有,httpd 
+```
 
 ### 三，termux
 #### 1.介绍termux
@@ -135,13 +145,83 @@ github **https://github.com/termux/**
 phpinfo();
 ?>
 ```
-手机端访问 ```127.0.0.1:8050/phpinfo.php```
-![phpinfo](/blog/myimg/server/termux/phpinfo.png)
+
+手机端访问 
+```
+127.0.0.1:8050/phpinfo.php
+```
+![phpinfo](/blog/myimg/server/termux/phpinfo.png)  
+
+
+
+下面介绍Termux 如何搭建apache2 和 php-apache
+# termux apache php的配置
+
+https:/.csdn.net/aoli_shuai/article/details/78847700
+
+```shell
+pkg install apache2  php-apache
+termux-chroot
+vim  /usr/etc/apache2/httpd.conf
+```
+
+找到
+```conf
+AddType application/x-compress .Z
+AddType application/x-gzip .gz .tgz
+```
+
+增加
+
+```conf
+AddType application/x-httpd-php .php
+```
+
+
+找到
+
+```conf
+<IfModule dir_module> DirectoryIndex index.html </IfModule> 
+```
+
+增加为
+
+```conf
+<IfModule dir_module> DirectoryIndex index.html index.php </IfModule> 
+```
+
+
+
+ 检查有没有加载PHP7的模块
+ ```shell
+termux-chroot
+ls /usr/libexec/apache2/  | grep php
+```
+
+查看配置文件httpd.conf中有没有加载libphp7.so的配置
+
+
+如果没有，则添加一下内容，注意模块的名字
+```
+LoadModule php7_module libexec/apache2/libphp7.so
+```
+
+检测配置文件语法是否有错误
+```
+[root@shuai-01 ~]# /usr/local/apache2.4/bin/apachectl -t Syntax OK 
+```
+重新加载配置文件
+```
+[root@shuai-01 ~]# /usr/local/apache2.4/bin/apachectl graceful 
+```
+配置成功
+
 
 有关更多的Termux玩法请看
+https://wiki.termux.com/wiki/Main_Page
 http://www.sqlsec.com/2018/05/termux.html
 
 
 
 ### 四，结语
-手机做服务器有很多好处，第一是手机可以时时刻刻开机，便携性强，可玩性高，对于喜欢搞机的人来说简直是福利，特别是那种没钱买服务器的，比如说笔者。。
+手机做服务器玩玩就好，目前还在探索中...
