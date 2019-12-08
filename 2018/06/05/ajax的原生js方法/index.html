@@ -2,27 +2,15 @@
 
 
 
-
-
-
-
-
-
-
-
-
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
-
-
-
 
 
 
@@ -50,6 +38,10 @@
 
 
 
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
 
 
 
@@ -58,25 +50,47 @@
 
 <link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/blog/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=6.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=6.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/blog/images/logo.svg?v=6.3.0" color="#222">
-
-
-
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
 
 
 
+
+
+  <meta name="keywords" content="ajax,javascript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="html代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&amp;lt;link rel=&quot;stylesheet&quot;      href=&quot;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.">
+<meta name="keywords" content="ajax,javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ajax的原生js方法">
+<meta property="og:url" content="https://tignioj.github.io/2018/06/05/ajax的原生js方法/index.html">
+<meta property="og:site_name" content="Tignioj&#39;s Blog">
+<meta property="og:description" content="html代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&amp;lt;link rel=&quot;stylesheet&quot;      href=&quot;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-17T17:17:11.010Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ajax的原生js方法">
+<meta name="twitter:description" content="html代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&amp;lt;link rel=&quot;stylesheet&quot;      href=&quot;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.">
 
 
 
@@ -84,14 +98,16 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/blog/',
-    scheme: 'Gemini',
-    version: '6.3.0',
+    scheme: 'Muse',
+    version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
+    fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -103,38 +119,12 @@
 </script>
 
 
-  
+
+  <link rel="canonical" href="https://tignioj.github.io/2018/06/05/ajax的原生js方法/"/>
 
 
 
 
-  <meta name="description" content="html代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&amp;lt;link rel=&quot;stylesheet&quot;      href=&quot;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.">
-<meta name="keywords" content="ajax,javascript">
-<meta property="og:type" content="article">
-<meta property="og:title" content="ajax的原生js方法">
-<meta property="og:url" content="http://tignoioj.ml/blog/2018/06/05/ajax的原生js方法/index.html">
-<meta property="og:site_name" content="Tignioj&#39;s Blog">
-<meta property="og:description" content="html代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&amp;lt;link rel=&quot;stylesheet&quot;      href=&quot;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-17T17:17:11.010Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ajax的原生js方法">
-<meta name="twitter:description" content="html代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&amp;lt;link rel=&quot;stylesheet&quot;      href=&quot;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.">
-
-
-
-
-
-
-  <link rel="canonical" href="http://tignoioj.ml/blog/2018/06/05/ajax的原生js方法/"/>
-
-
-
-<script type="text/javascript" id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
 
   <title>ajax的原生js方法 | Tignioj's Blog</title>
   
@@ -145,34 +135,6 @@
 
 
 
-
-
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
 
 </head>
 
@@ -192,17 +154,19 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blog/" class="brand" rel="start">
+      <a href="/blog/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Tignioj's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-    
+      
+        <p class="site-subtitle"></p>
+      
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -210,58 +174,35 @@
   </div>
 </div>
 
-
-
 <nav class="site-nav">
+  
+
   
     <ul id="menu" class="menu">
       
         
-        
-        
-          
-          <li class="menu-item menu-item-home">
-    <a href="/blog/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-about">
-    <a href="/blog/about/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-    <a href="/blog/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-    <a href="/blog/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-    <a href="/blog/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
-  </li>
-
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
       
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
       
     </ul>
-  
-
   
 
   
@@ -269,23 +210,12 @@
 
 
 
-  
-
-
-
-</div>
+ </div>
     </header>
-
-    
-
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          
-            
-
-          
           <div id="content" class="content">
             
 
@@ -298,19 +228,17 @@
   
   
 
-  
-
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://tignoioj.ml/blog/blog/2018/06/05/ajax的原生js方法/">
+    <link itemprop="mainEntityOfPage" href="https://tignioj.github.io/blog/2018/06/05/ajax的原生js方法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tignioj">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/avatar.jpg">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -322,50 +250,25 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ajax的原生js方法
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">ajax的原生js方法</h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-
-            
-            
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">发表于</span>
               
-
-              
-                
-              
-
-              <time title="Post created: 2018-06-05 18:05:00" itemprop="dateCreated datePublished" datetime="2018-06-05T18:05:00+08:00">2018-06-05</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-05T18:05:00+08:00">
+                2018-06-05
+              </time>
             
 
             
-              
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2018-09-18 01:17:11" itemprop="dateModified" datetime="2018-09-18T01:17:11+08:00">2018-09-18</time>
-              
             
           </span>
 
@@ -378,10 +281,14 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/blog/categories/前端学习/" itemprop="url" rel="index"><span itemprop="name">前端学习</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/前端学习/" itemprop="url" rel="index">
+                    <span itemprop="name">前端学习</span>
+                  </a>
+                </span>
 
                 
                 
@@ -419,9 +326,6 @@
 <h3 id="php代码"><a href="#php代码" class="headerlink" title="php代码"></a>php代码</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">header(<span class="string">"Content-Type:text/plain;charset=utf-8"</span>);</span><br><span class="line"></span><br><span class="line">$staff=<span class="keyword">array</span>(</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">"name"</span> =&gt; <span class="string">"hong7"</span>, <span class="string">"number"</span> =&gt; <span class="string">"101"</span>, <span class="string">"sex"</span> =&gt; <span class="string">"male"</span>, <span class="string">"job"</span> =&gt; <span class="string">"manager"</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">"name"</span> =&gt; <span class="string">"guojing"</span>, <span class="string">"number"</span> =&gt; <span class="string">"102"</span>, <span class="string">"sex"</span> =&gt; <span class="string">"female"</span>, <span class="string">"job"</span> =&gt; <span class="string">"扫地"</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">"name"</span> =&gt; <span class="string">"uangron"</span>, <span class="string">"number"</span> =&gt; <span class="string">"103"</span>, <span class="string">"sex"</span> =&gt; <span class="string">"male"</span>, <span class="string">"job"</span> =&gt; <span class="string">"打杂"</span>),</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>($_SERVER[<span class="string">"REQUEST_METHOD"</span>]==<span class="string">"GET"</span>) &#123;</span><br><span class="line">    search();</span><br><span class="line">&#125; <span class="keyword">elseif</span> ($_SERVER[<span class="string">"REQUEST_METHOD"</span>]==<span class="string">"POST"</span>) &#123;</span><br><span class="line">    create();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">search</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">isset</span>($_GET[<span class="string">"number"</span>]) || <span class="keyword">empty</span>($_GET[<span class="string">"number"</span>])) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"syntax error hahaha"</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">global</span> $staff;</span><br><span class="line">    $number = $_GET[<span class="string">"number"</span>];</span><br><span class="line">    $result = <span class="string">"no such people"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span>($staff <span class="keyword">as</span> $value) &#123;</span><br><span class="line">        <span class="keyword">if</span> ($value[<span class="string">"number"</span>] == $number) &#123;</span><br><span class="line">            $result = <span class="string">"find: \nnumber: "</span> . $value[<span class="string">"number"</span>]. <span class="string">"\nname: "</span>.</span><br><span class="line">            $value[<span class="string">"name"</span>] . <span class="string">"\nsex: "</span>. $value[<span class="string">"sex"</span>] . <span class="string">"\nJob: "</span> . $value[<span class="string">"job"</span>];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">echo</span> $result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">create</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(</span><br><span class="line">        (!<span class="keyword">isset</span>($_POST[<span class="string">"name"</span>]) || <span class="keyword">empty</span>($_POST[<span class="string">"name"</span>]))</span><br><span class="line">        ||(!<span class="keyword">isset</span>($_POST[<span class="string">"number"</span>]) || <span class="keyword">empty</span>($_POST[<span class="string">"number"</span>]))</span><br><span class="line">        ||(!<span class="keyword">isset</span>($_POST[<span class="string">"sex"</span>]) || <span class="keyword">empty</span>($_POST[<span class="string">"sex"</span>]))</span><br><span class="line">        ||(!<span class="keyword">isset</span>($_POST[<span class="string">"job"</span>]) || <span class="keyword">empty</span>($_POST[<span class="string">"job"</span>]))</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"syntax error , people info not enough"</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"员工 :"</span> . $_POST[<span class="string">"name"</span>]. <span class="string">" saved !"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
       
     </div>
-
-    
-
     
     
     
@@ -431,30 +335,14 @@
     
 
     
-    
-
-<div>
-  
-    <div>
-    
-        <div style="text-align:center;color: #ccc;font-size:14px;">
-            -------------本文结束
-            <i class="fa fa-paw"></i>
-            感谢您的阅读-------------
-        </div>
-    
-</div>
-  
-</div>
-
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/blog/tags/ajax/" rel="tag"><i class="fa fa-tag"></i> ajax</a>
+            <a href="/blog/tags/ajax/" rel="tag"># ajax</a>
           
-            <a href="/blog/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
+            <a href="/blog/tags/javascript/" rel="tag"># javascript</a>
           
         </div>
       
@@ -501,6 +389,9 @@
           </div>
           
 
+
+          
+
   
 
 
@@ -526,10 +417,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
+            站点概览
           </li>
         </ul>
       
@@ -538,145 +429,57 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/blog/images/avatar.jpg"
-                alt="tignioj" />
-            
               <p class="site-author-name" itemprop="name">tignioj</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/blog/archives/">
-                
-                    <span class="site-state-item-count">7</span>
-                    <span class="site-state-item-name">Artikel</span>
-                  </a>
-                </div>
-              
+          <nav class="site-state motion-element">
 
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/blog/categories/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">7</span>
-                    <span class="site-state-item-name">Kategorien</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/blog/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">27</span>
-                    <span class="site-state-item-name">Tags</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/tignioj" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                  
-                </span>
-              
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
             
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blog/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/blog/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+
+          
+
+          
+          
+
+          
+          
+
           
 
         </div>
@@ -712,21 +515,17 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love" id="animate">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">tignioj</span>
 
   
-
-  
 </div>
 
 
-
-
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -734,13 +533,12 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.3.0</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 
 
         
-
 
 
 
@@ -779,11 +577,7 @@
 
 
 
-
-
-
-
-
+  
 
 
 
@@ -803,6 +597,16 @@
 
   
   
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
     <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
@@ -811,40 +615,42 @@
     <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/utils.js?v=6.3.0"></script>
-
-  <script type="text/javascript" src="/blog/js/src/motion.js?v=6.3.0"></script>
-
-
-
   
   
-
-
-  <script type="text/javascript" src="/blog/js/src/affix.js?v=6.3.0"></script>
-
-  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=6.3.0"></script>
-
-
-
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=6.3.0"></script>
-<script type="text/javascript" src="/blog/js/src/post-details.js?v=6.3.0"></script>
-
 
 
   
 
 
-  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
 
 
 
   
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
 
 
 
@@ -871,25 +677,21 @@
 
 
 
-  
-
-
-
 
 
   
 
-  
+
+
+
 
   
 
   
 
   
-  
 
   
-
   
 
   
