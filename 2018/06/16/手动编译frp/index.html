@@ -83,17 +83,17 @@
 <meta name="keywords" content="frp,编译,内网穿透,go">
 <meta property="og:type" content="article">
 <meta property="og:title" content="手动编译frp">
-<meta property="og:url" content="https://tignioj.github.io/2018/06/16/手动编译frp/index.html">
+<meta property="og:url" content="https://tignioj.github.io/blog/2018/06/16/手动编译frp/index.html">
 <meta property="og:site_name" content="Tignioj&#39;s Blog">
 <meta property="og:description" content="今天我们来学习下如何编译frp0.20.0一，在archlinux 下编译安装gopacman -S go获取frp源码go get github.com/fatedier/frp进入家目录会发现多了个go目录 编译frps和frpccd $HOME/go/src/github.com/fatedier/frp/cmd/frpc &amp;amp;&amp;amp; go buildlscd $HOME/go/s">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://tignioj.github.io/blog/myimg/build/frp/frpc.png">
+<meta property="og:image" content="https://tignioj.github.io/blog/2018/06/16/myimg/build/frp/frpc.png">
 <meta property="og:image" content="https://tignioj.github.io/blog/myimg/build/frp/frps.png">
-<meta property="og:updated_time" content="2018-09-17T17:17:11.021Z">
+<meta property="og:updated_time" content="2020-02-25T17:03:06.401Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="手动编译frp">
 <meta name="twitter:description" content="今天我们来学习下如何编译frp0.20.0一，在archlinux 下编译安装gopacman -S go获取frp源码go get github.com/fatedier/frp进入家目录会发现多了个go目录 编译frps和frpccd $HOME/go/src/github.com/fatedier/frp/cmd/frpc &amp;amp;&amp;amp; go buildlscd $HOME/go/s">
-<meta name="twitter:image" content="https://tignioj.github.io/blog/myimg/build/frp/frpc.png">
+<meta name="twitter:image" content="https://tignioj.github.io/blog/2018/06/16/myimg/build/frp/frpc.png">
 
 
 
@@ -123,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="https://tignioj.github.io/2018/06/16/手动编译frp/"/>
+  <link rel="canonical" href="https://tignioj.github.io/blog/2018/06/16/手动编译frp/"/>
 
 
 
@@ -236,7 +236,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tignioj.github.io/blog/2018/06/16/手动编译frp/">
+    <link itemprop="mainEntityOfPage" href="https://tignioj.github.io/blog/blog/2018/06/16/手动编译frp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tignioj">
@@ -326,7 +326,7 @@
 
       
         <h1 id="今天我们来学习下如何编译frp0-20-0"><a href="#今天我们来学习下如何编译frp0-20-0" class="headerlink" title="今天我们来学习下如何编译frp0.20.0"></a>今天我们来学习下如何编译frp0.20.0</h1><h3 id="一，在archlinux-下编译"><a href="#一，在archlinux-下编译" class="headerlink" title="一，在archlinux 下编译"></a>一，在archlinux 下编译</h3><p><strong>安装go</strong><br><code>pacman -S go</code><br><strong>获取frp源码</strong><br><code>go get github.com/fatedier/frp</code><br>进入家目录会发现多了个go目录</p>
-<p>编译<code>frps</code>和<code>frpc</code><br><code>cd $HOME/go/src/github.com/fatedier/frp/cmd/frpc &amp;&amp; go build</code><br><code>ls</code><br><img src="/blog/myimg/build/frp/frpc.png" alt="frp0.20directiory.png"><br><code>cd $HOME/go/src/github.com/fatedier/frp/cmd/frps &amp;&amp; go build</code><br><code>ls</code><br><img src="/blog/myimg/build/frp/frps.png" alt="frp0.20directiory.png"></p>
+<p>编译<code>frps</code>和<code>frpc</code><br><code>cd $HOME/go/src/github.com/fatedier/frp/cmd/frpc &amp;&amp; go build</code><br><code>ls</code><br><img src="../myimg/build/frp/frpc.png" alt="frp0.20directiory.png"><br><code>cd $HOME/go/src/github.com/fatedier/frp/cmd/frps &amp;&amp; go build</code><br><code>ls</code><br><img src="/blog/myimg/build/frp/frps.png" alt="frp0.20directiory.png"></p>
 <h2 id="二，Termux-下编译"><a href="#二，Termux-下编译" class="headerlink" title="二，Termux 下编译"></a>二，Termux 下编译</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pkg install golang</span><br><span class="line">go get github.com/fatedier/frp</span><br><span class="line">cd go/src/github.com/fatedier/frp/cmd/frpc/ &amp;&amp; go build</span><br><span class="line">cd go/src/github.com/fatedier/frp/cmd/frps/ &amp;&amp; go build</span><br></pre></td></tr></table></figure>
 <p>步骤一样的，只是安装的go package不一样，termux 的包为golang, 而archlinux安装go就行了</p>
 
@@ -454,7 +454,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -529,7 +529,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
