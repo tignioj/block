@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="反向代理,nginx,css丢失,js丢失,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1. 需求：客户访问tignioj.top服务器将请求反方向代理到二级路径github.tignioj.io/blog 2. 正确的配置1. 关键！注意路径的斜杠，不能写错proxy_pass https://tignioj.github.io/blog/;和proxy_pass https://tignioj.github.io/blog;两个是不一样的前者代表把代理路径的根路径作为访问路径的根">
+<meta name="keywords" content="反向代理,nginx,css丢失,js丢失">
+<meta property="og:type" content="article">
+<meta property="og:title" content="反向代理子路径时JS以及CSS丢失解决方案">
+<meta property="og:url" content="https://tignioj.github.io/blog/2020/02/29/反向代理子路径时JS以及CSS丢失解决方案/index.html">
+<meta property="og:site_name" content="Tignioj&#39;s Blog">
+<meta property="og:description" content="1. 需求：客户访问tignioj.top服务器将请求反方向代理到二级路径github.tignioj.io/blog 2. 正确的配置1. 关键！注意路径的斜杠，不能写错proxy_pass https://tignioj.github.io/blog/;和proxy_pass https://tignioj.github.io/blog;两个是不一样的前者代表把代理路径的根路径作为访问路径的根">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-02-28T18:50:32.280Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="反向代理子路径时JS以及CSS丢失解决方案">
+<meta name="twitter:description" content="1. 需求：客户访问tignioj.top服务器将请求反方向代理到二级路径github.tignioj.io/blog 2. 正确的配置1. 关键！注意路径的斜杠，不能写错proxy_pass https://tignioj.github.io/blog/;和proxy_pass https://tignioj.github.io/blog;两个是不一样的前者代表把代理路径的根路径作为访问路径的根">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://tignioj.github.io/blog/2020/02/29/反向代理子路径时JS以及CSS丢失解决方案/">
+
+
+
+
+
+  <title>反向代理子路径时JS以及CSS丢失解决方案 | Tignioj's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Tignioj's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tignioj.github.io/blog/blog/2020/02/29/反向代理子路径时JS以及CSS丢失解决方案/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tignioj">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tignioj's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">反向代理子路径时JS以及CSS丢失解决方案</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-29T02:46:47+08:00">
+                2020-02-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-需求："><a href="#1-需求：" class="headerlink" title="1. 需求："></a>1. 需求：</h1><p>客户访问tignioj.top<br>服务器将请求反方向代理到二级路径<br>github.tignioj.io/blog</p>
+<h1 id="2-正确的配置"><a href="#2-正确的配置" class="headerlink" title="2. 正确的配置"></a>2. 正确的配置</h1><h2 id="1-关键"><a href="#1-关键" class="headerlink" title="1. 关键"></a>1. 关键</h2><p><strong>！注意路径的斜杠，不能写错</strong><br>proxy_pass <a href="https://tignioj.github.io/blog/">https://tignioj.github.io/blog/</a>;<br>和<br>proxy_pass <a href="https://tignioj.github.io/blog">https://tignioj.github.io/blog</a>;<br>两个是不一样的<br>前者代表把代理路径的根路径作为访问路径的根路径<br>后者代表仅仅访问该接口！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    </span><br><span class="line">    listen 80;</span><br><span class="line">    server_name tignioj.top;</span><br><span class="line">    location / &#123;</span><br><span class="line">      proxy_pass https://tignioj.github.io/blog/;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    location ^~/blog/ &#123;</span><br><span class="line">       proxy_pass https://tignioj.github.io/blog/;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-解释"><a href="#2-解释" class="headerlink" title="2.  解释"></a>2.  解释</h2><h3 id="第一段："><a href="#第一段：" class="headerlink" title="第一段："></a>第一段：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">  proxy_pass https://tignioj.github.io/blog/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>客户访问 <a href="http://tignioj.top:80;的时候，ngxin帮我们访问了proxy_pass指向的路径" target="_blank" rel="noopener">http://tignioj.top:80;的时候，ngxin帮我们访问了proxy_pass指向的路径</a></p>
+<p>于是当我们访问<br><code>https://tignioj.top</code></p>
+<p>nginx返回了如下的页面<br><code>https://tignioj.github.io/blog/;</code></p>
+<h3 id="第二段"><a href="#第二段" class="headerlink" title="第二段"></a>第二段</h3><pre><code>location ^~/blog/ {
+   proxy_pass https://tignioj.github.io/blog/;
+}
+</code></pre><p><strong>注意，这里的/blog/ 对应了代理服务器的二级路径</strong></p>
+<p>因为原网址 <a href="https://tignioj.github.io/blog/">https://tignioj.github.io/blog/</a> 的所有css，js路径都是相对于/blog/目录下的<br>所以当我们打开<br><code>https://tignioj.top</code></p>
+<p>主页会把<code>https://tignioj.top</code>当作根路径，然后去访问css, js等资源<br>比如<br><code>https://tignioj.top/blog/js/index.js</code></p>
+<p>由于我们第一段配置了<br><code>https://tignioj.top/</code>指向 <code>https://tignioj.github.io/blog/;</code></p>
+<p>这样就会使得js的请求路径实际上变成了<br><code>https://tignioj.github.io/blog/blog/js/index.js</code></p>
+<p>因此，我们需要告诉nginx，当有人请求/blog/这个二级目录下面的页面时，重新分配路径</p>
+<h3 id="参数解释"><a href="#参数解释" class="headerlink" title="参数解释"></a>参数解释</h3><ul>
+<li>^~/blog/ ：匹配所有 blog开头的url 即 所有<a href="https://tignioj.top/blog/开头的url" target="_blank" rel="noopener">https://tignioj.top/blog/开头的url</a></li>
+<li>proxy_pass <a href="https://tignioj.github.io/blog/">https://tignioj.github.io/blog/</a>; : 当请求匹配的url时，将请求转到 <a href="https://tignioj.github.io/blog/">https://tignioj.github.io/blog/</a></li>
+</ul>
+<h1 id="2-完整"><a href="#2-完整" class="headerlink" title="2. 完整"></a>2. 完整</h1><h2 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">server</span><br><span class="line">&#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name tignioj.top;</span><br><span class="line">    index index.php index.html index.htm default.php default.htm default.html;</span><br><span class="line">    root /www/wwwroot/tignioj.top;</span><br><span class="line"></span><br><span class="line">    #SSL-START SSL相关配置，请勿删除或修改下一行带注释的404规则</span><br><span class="line">    #error_page 404/404.html;</span><br><span class="line">    #SSL-END</span><br><span class="line">       </span><br><span class="line">    #ERROR-PAGE-START  错误页配置，可以注释、删除或修改</span><br><span class="line">    #error_page 404 /404.html;</span><br><span class="line">    #error_page 502 /502.html;</span><br><span class="line">    #ERROR-PAGE-END</span><br><span class="line">       </span><br><span class="line">    #PHP-INFO-START  PHP引用配置，可以注释或修改</span><br><span class="line">    include enable-php-00.conf;</span><br><span class="line">    #PHP-INFO-END</span><br><span class="line">       </span><br><span class="line">    #REWRITE-START URL重写规则引用,修改后将导致面板设置的伪静态规则失效</span><br><span class="line">    include /www/server/panel/vhost/rewrite/tignioj.top.conf;</span><br><span class="line">    #REWRITE-END</span><br><span class="line">       </span><br><span class="line">    #禁止访问的文件或目录</span><br><span class="line">    location ~ ^/(\.user.ini|\.htaccess|\.git|\.svn|\.project|LICENSE|README.md)</span><br><span class="line">    &#123;</span><br><span class="line">        return 404;</span><br><span class="line">    &#125;</span><br><span class="line">       </span><br><span class="line">    #一键申请SSL证书验证目录相关设置</span><br><span class="line">    location ~ \.well-known&#123;</span><br><span class="line">        allow all;</span><br><span class="line">    &#125;</span><br><span class="line">       </span><br><span class="line">    location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$</span><br><span class="line">    &#123;</span><br><span class="line">        expires      30d;</span><br><span class="line">        error_log off;</span><br><span class="line">        access_log /dev/null;</span><br><span class="line">    &#125;</span><br><span class="line">       </span><br><span class="line">    location ~ .*\.(js|css)?$</span><br><span class="line">    &#123;</span><br><span class="line">        expires      12h;</span><br><span class="line">        error_log off;</span><br><span class="line">        access_log /dev/null; </span><br><span class="line">    &#125;</span><br><span class="line">       </span><br><span class="line">    location / &#123;</span><br><span class="line">      proxy_pass https://tignioj.github.io/blog/;</span><br><span class="line">    &#125;</span><br><span class="line">       </span><br><span class="line">    location ^~/blog/ &#123;</span><br><span class="line">       proxy_pass https://tignioj.github.io/blog/;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">    access_log  /www/wwwlogs/tignioj.top.log;</span><br><span class="line">    error_log  /www/wwwlogs/tignioj.top.error.log;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3-排错"><a href="#3-排错" class="headerlink" title="3. 排错"></a>3. 排错</h1><h2 id="1-css-js丢失"><a href="#1-css-js丢失" class="headerlink" title="1. css, js丢失"></a>1. css, js丢失</h2><ul>
+<li>确保你nginx配置了和代理网站对应的子路径</li>
+<li>注意根路径有没写错</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/反向代理/" rel="tag"># 反向代理</a>
+          
+            <a href="/blog/tags/nginx/" rel="tag"># nginx</a>
+          
+            <a href="/blog/tags/css丢失/" rel="tag"># css丢失</a>
+          
+            <a href="/blog/tags/js丢失/" rel="tag"># js丢失</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2020/01/11/安装Anaconda到win10/" rel="next" title="安装Anaconda到win10">
+                <i class="fa fa-chevron-left"></i> 安装Anaconda到win10
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">tignioj</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blog/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/blog/tags/index.html">
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-需求："><span class="nav-number">1.</span> <span class="nav-text">1. 需求：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-正确的配置"><span class="nav-number">2.</span> <span class="nav-text">2. 正确的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-关键"><span class="nav-number">2.1.</span> <span class="nav-text">1. 关键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-解释"><span class="nav-number">2.2.</span> <span class="nav-text">2.  解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一段："><span class="nav-number">2.2.1.</span> <span class="nav-text">第一段：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二段"><span class="nav-number">2.2.2.</span> <span class="nav-text">第二段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数解释"><span class="nav-number">2.2.3.</span> <span class="nav-text">参数解释</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-完整"><span class="nav-number">3.</span> <span class="nav-text">2. 完整</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx配置"><span class="nav-number">3.1.</span> <span class="nav-text">nginx配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-排错"><span class="nav-number">4.</span> <span class="nav-text">3. 排错</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-css-js丢失"><span class="nav-number">4.1.</span> <span class="nav-text">1. css, js丢失</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tignioj</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
